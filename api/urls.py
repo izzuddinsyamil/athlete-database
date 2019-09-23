@@ -4,9 +4,6 @@ from api import views
 
 app_name = 'api'
 urlpatterns = [
-    path('', views.SexList.as_view()),
-    path('sex/', views.SexList.as_view()),
-
     # athlete
     path('athlete/', views.AthleteList.as_view()),
     path('athlete/<int:pk>/', views.AthleteDetail.as_view()),
