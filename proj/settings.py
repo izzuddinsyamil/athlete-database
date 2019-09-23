@@ -12,10 +12,17 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 # pylint: disable=import-error
 import os
 import django_heroku
+import dj_database_url
+import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DOTENV_FILE = os.path.join(BASE_DIR, ".env")
+ENV = False
+
+if os.path.isfile(DOTENV_FILE):
+    ENV = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -77,18 +84,20 @@ WSGI_APPLICATION = 'proj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'athletelogs',
-        'USER': 'koni',
-        'PASSWORD': 'konidb',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+if ENV:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': dotenv.get_key(DOTENV_FILE, 'DB_NAME'),
+            'USER': dotenv.get_key(DOTENV_FILE, 'DB_USER'),
+            'PASSWORD': dotenv.get_key(DOTENV_FILE, 'DB_PASSWORD'),
+            'HOST': dotenv.get_key(DOTENV_FILE, 'DB_HOST'),
+            'PORT': dotenv.get_key(DOTENV_FILE, 'DB_PORT')
+        }
     }
-}
-
+else:
+    DATABASES = dict()
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -146,3 +155,6 @@ REST_FRAMEWORK = {
 }
 
 django_heroku.settings(locals())
+
+if not ENV:
+    del DATABASES['default']['OPTIONS']['sslmode']
