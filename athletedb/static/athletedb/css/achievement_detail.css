@@ -1,0 +1,11 @@
+.container {
+    font-family: 'Cabin', sans-serif !important;
+}
+
+.navbar-title {
+    font-size: 150%;
+}
+
+.table {
+    width: 70%;
+}

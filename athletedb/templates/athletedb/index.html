@@ -1,0 +1,32 @@
+{% extends "athletedb/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'athletedb/css/index.css' %}">
+{% endblock %}
+{% block content %}
+{% if athlete_list %}
+<table id="athlete-table" class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nama <img class="sort-name" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
+                    alt=""></th>
+            <th scope="col">Umur <img class="sort-age" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
+                    alt=""></th>
+            <th scope="col">Tanggal Lahir</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Cabor</th>
+            <th scope="col">Prestasi</th>
+        </tr>
+    </thead>
+    <tbody class="athlete-data">
+    </tbody>
+</table>
+{% else %}
+<p>No athletes are available.</p>
+{% endif %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'athletedb/js/index.js' %}">
+</script>
+{% endblock %}

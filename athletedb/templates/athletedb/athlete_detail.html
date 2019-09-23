@@ -1,0 +1,49 @@
+{% extends "athletedb/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'athletedb/css/athlete_detail.css' %}">
+{% endblock %}
+{% block content %}
+<h2>{{ athlete_detail.name }}</h2>
+
+<table class="table">
+    <thead></thead>
+    <tbody>
+        <tr>
+            <td class="font-weight-bold">Nama</td>
+            <td>{{ athlete_detail.name }}</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Tanggal Lahir</td>
+            <td>{{ athlete_detail.birth_date }} ({{ athlete_detail.age }} tahun)</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Nomor Telfon</td>
+            <td>{{ athlete_detail.phone_number }}</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Alamat</td>
+            <td>{{ athlete_detail.address }}</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Jenis Kelamin</td>
+            <td>{{ athlete_detail.sex }}</td>
+        </tr>
+        <tr class="sports-row">
+            <td class="font-weight-bold">Cabang Olahraga</td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Asal Sekolah</td>
+            <td>{{ athlete_detail.school }}</td>
+        </tr>
+        <tr class="achievements-row">
+            <td class="font-weight-bold">Prestasi</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'athletedb/js/athlete-detail.js' %}">
+</script>
+{% endblock %}
