@@ -34,7 +34,7 @@ SECRET_KEY = 'n3yjei#0)m2ccqv49f1(_57j!2snl5l&sjzx6a)l0^bp2_52^9'
 if ENV:
     DEBUG = True
 else:
-    DEBUG = True
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
