@@ -5,7 +5,7 @@ from django.template import loader
 from .models import Athlete, Achievement
 from django.http import JsonResponse
 
-
+# pylint: disable=no-member
 # Create your views here.
 
 

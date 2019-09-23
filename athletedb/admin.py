@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Sex, Sport, Achievement, Athlete
 
+# pylint: disable=function-redefined
 # Register your models here.
 @admin.register(Athlete)
 class AthleteAdmin(admin.ModelAdmin):
