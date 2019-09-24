@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    GetInitialData();
+    GetData();
 
     $(".sort-age").hover(function () {
         $(this).css("cursor", "pointer");
@@ -52,15 +52,21 @@ $(document).ready(function () {
     });
 });
 
-function GetInitialData() {
-    var url = "api/athlete/";
-    $.get(url, function (data, status) {
-        if (status == 'success') {
-            data["results"].forEach(function (element) {
-                ProcessAthleteData(element);
-            });
-        }
-    });
+function GetData() {
+    var params = new URLSearchParams(window.location.search);
+
+    var pageParam = params.get('page');
+    if (pageParam == null) {
+        pageParam = 1;
+    }
+    var url = "api/athlete/?page=" + pageParam;
+        $.get(url, function (data, status) {
+            if (status == 'success') {
+                data["results"].forEach(function (element) {
+                    ProcessAthleteData(element);
+                });
+            }
+        });
 }
 
 function ProcessAthleteData(json) {

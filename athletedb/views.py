@@ -4,6 +4,8 @@ from django.http import HttpResponse, Http404
 from django.template import loader
 from .models import Athlete, Achievement
 from django.http import JsonResponse
+from django.core.paginator import (
+    Paginator, EmptyPage, PageNotAnInteger)
 
 # pylint: disable=no-member
 # Create your views here.
@@ -11,9 +13,19 @@ from django.http import JsonResponse
 
 def index(request):
     athlete_list = Athlete.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(athlete_list, 10)
+
+    try:
+        athletes = paginator.page(page)
+    except PageNotAnInteger:
+        athletes = paginator.page(1)
+    except EmptyPage:
+        athletes = paginator.page(paginator.num_pages)
 
     context = {
-        'athlete_list': athlete_list,
+        'athlete_list': athletes,
     }
     return render(request, 'athletedb/index.html', context)
 
