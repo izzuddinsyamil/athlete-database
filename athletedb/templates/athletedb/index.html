@@ -5,25 +5,26 @@
 {% endblock %}
 {% block content %}
 {% if athlete_list %}
-<table id="athlete-table" class="table">
-    <thead class="thead-dark">
-        <tr>
-            <!-- <th scope="col">Nama <img class="sort-name" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
-                    alt=""></th> -->
-            <th scope="col">Nama</th>
-            <!-- <th scope="col">Umur <img class="sort-age" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
-                    alt=""></th> -->
-            <th scope="col">Umur</th>
-            <th scope="col">Tanggal Lahir</th>
-            <th scope="col">Alamat</th>
-            <th scope="col">Cabor</th>
-            <th scope="col">Prestasi</th>
-        </tr>
-    </thead>
-    <tbody class="athlete-data">
-    </tbody>
-</table>
-
+<div class="content-table">
+  <table id="athlete-table" class="table">
+      <thead class="thead-dark">
+          <tr>
+              <!-- <th scope="col">Nama <img class="sort-name" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
+                      alt=""></th> -->
+              <th scope="col">Nama</th>
+              <!-- <th scope="col">Umur <img class="sort-age" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
+                      alt=""></th> -->
+              <th scope="col">Umur</th>
+              <th scope="col">Tanggal Lahir</th>
+              <th scope="col">Alamat</th>
+              <th scope="col">Cabor</th>
+              <th scope="col">Prestasi</th>
+          </tr>
+      </thead>
+      <tbody class="athlete-data">
+      </tbody>
+  </table>
+</div>
 {% if athlete_list.has_other_pages %}
   <ul class="pagination justify-content-end">
     {% if athlete_list.has_previous %}
