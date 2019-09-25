@@ -7,44 +7,44 @@
 {% if athlete_list %}
 <div class="content-table">
   <table id="athlete-table" class="table">
-      <thead class="thead-dark">
-          <tr>
-              <!-- <th scope="col">Nama <img class="sort-name" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
+    <thead class="thead-dark">
+      <tr>
+        <!-- <th scope="col">Nama <img class="sort-name" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
                       alt=""></th> -->
-              <th scope="col">Nama</th>
-              <!-- <th scope="col">Umur <img class="sort-age" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
+        <th scope="col">Nama</th>
+        <!-- <th scope="col">Umur <img class="sort-age" src="{% static 'athletedb/image/iconmonstr-sort-7-12.png' %}"
                       alt=""></th> -->
-              <th scope="col">Umur</th>
-              <th scope="col">Tanggal Lahir</th>
-              <th scope="col">Alamat</th>
-              <th scope="col">Cabor</th>
-              <th scope="col">Prestasi</th>
-          </tr>
-      </thead>
-      <tbody class="athlete-data">
-      </tbody>
+        <th scope="col">Umur</th>
+        <th scope="col">Tanggal Lahir</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">Cabor</th>
+        <th scope="col">Prestasi</th>
+      </tr>
+    </thead>
+    <tbody class="athlete-data">
+    </tbody>
   </table>
 </div>
 {% if athlete_list.has_other_pages %}
-  <ul class="pagination justify-content-end">
-    {% if athlete_list.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ athlete_list.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-    {% endif %}
-    {% for i in athlete_list.paginator.page_range %}
-      {% if athlete_list.number == i %}
-        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if athlete_list.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ athlete_list.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-    {% endif %}
-  </ul>
+<ul class="pagination justify-content-end">
+  {% if athlete_list.has_previous %}
+  <li class="page-item"><a class="page-link" href="?page={{ athlete_list.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+  <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+  {% endif %}
+  {% for i in athlete_list.paginator.page_range %}
+  {% if athlete_list.number == i %}
+  <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+  {% else %}
+  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if athlete_list.has_next %}
+  <li class="page-item"><a class="page-link" href="?page={{ athlete_list.next_page_number }}">&raquo;</a></li>
+  {% else %}
+  <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+  {% endif %}
+</ul>
 {% endif %}
 
 {% else %}

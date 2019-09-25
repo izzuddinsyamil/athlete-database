@@ -27,30 +27,64 @@ class Sport(models.Model):
         return self.name
 
 
-class Achievement(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.CharField(max_length=255)
-    position = models.CharField(max_length=10)
+class Event(models.Model):
+    name = models.CharField(max_length=255)
+    year = models.IntegerField(default=None, blank=True, null=True)
     organizer = models.CharField(max_length=255)
+    date = models.DateField(default=None, blank=True, null=True)
     location = models.CharField(
         max_length=255, default=None, blank=True, null=True)
-    date = models.DateField(
-        default=None, blank=True, null=True)
 
     @property
-    def get_titled_title(self):
-        return self.title.title()
+    def get_name_titled(self):
+        return self.name.title()
 
     @property
     def get_organizer_titled(self):
         return self.organizer.title()
 
     def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.name = self.get_name_titled
+        self.organizer = self.get_organizer_titled
+        super(Event, self).save(*args, **kwargs)
+
+
+class AchievementList(models.Model):
+    name = models.CharField(max_length=255)
+
+    @property
+    def get_name_titled(self):
+        return self.name.title()
+
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        self.name = self.get_name_titled
+        super(AchievementList, self).save(*args, **kwargs)
+
+
+class Achievement(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=255)
+    position = models.CharField(max_length=10)
+    event = models.ForeignKey(
+        Event, related_name='achievements_event',
+        on_delete=models.CASCADE, default=None,
+        blank=True, null=True)
+
+    @property
+    def get_titled_title(self):
+        return self.title.title()
+
+    def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
         self.title = self.get_titled_title
-        self.organizer = self.get_organizer_titled
         super(Achievement, self).save(*args, **kwargs)
 
 
@@ -61,16 +95,18 @@ class Athlete(models.Model):
     email = models.EmailField(default=None, blank=True, null=True)
     birth_date = models.DateField(
         default=None, blank=True, null=True)
+    birth_place = models.CharField(
+        max_length=255, default=None, blank=True, null=True)
     age = models.IntegerField(default=None, blank=True, null=True)
-    phone_number = models.CharField(max_length=50)
-    address = models.CharField(max_length=255)
+    phone_number = models.CharField(
+        max_length=50, default=None, blank=True, null=True)
+    address = models.CharField(
+        max_length=255, default=None, blank=True, null=True)
     school = models.CharField(
         max_length=255, default=None, blank=True, null=True)
     sex = models.ForeignKey(
         Sex, related_name='athletes_sex', on_delete=models.CASCADE)
     sports = models.ManyToManyField(Sport)
-    achievements = models.ManyToManyField(
-        Achievement)
 
     def __str__(self):
         return self.name
@@ -87,3 +123,15 @@ class Athlete(models.Model):
         self.age = self.get_age
         self.name = self.get_name_titled
         super(Athlete, self).save(*args, **kwargs)
+
+
+class AchievementMapping(models.Model):
+    athlete = models.ForeignKey(
+        Athlete, related_name='athletes', on_delete=models.CASCADE)
+    event = models.ForeignKey(
+        Event, related_name='events', on_delete=models.CASCADE)
+    achievement = models.ForeignKey(
+        AchievementList, related_name='achievements', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.athlete.name
