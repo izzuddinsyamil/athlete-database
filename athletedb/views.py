@@ -15,7 +15,7 @@ def index(request):
     athlete_list = Athlete.objects.all()
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(athlete_list, 10)
+    paginator = Paginator(athlete_list, 20)
 
     try:
         athletes = paginator.page(page)

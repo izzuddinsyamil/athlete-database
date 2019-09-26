@@ -91,19 +91,19 @@ class Achievement(models.Model):
 class Athlete(models.Model):
     name = models.CharField(max_length=200)
     nik = models.CharField(
-        max_length=255, default=None, blank=True, null=True)
+        max_length=255, default=None, blank=True, null=True, unique=True)
     email = models.EmailField(default=None, blank=True, null=True)
     birth_date = models.DateField(
         default=None, blank=True, null=True)
     birth_place = models.CharField(
-        max_length=255, default=None, blank=True, null=True)
+        max_length=255, default='-', blank=True, null=True)
     age = models.IntegerField(default=None, blank=True, null=True)
     phone_number = models.CharField(
-        max_length=50, default=None, blank=True, null=True)
+        max_length=50, default='-', blank=True, null=True)
     address = models.CharField(
-        max_length=255, default=None, blank=True, null=True)
+        max_length=255, default='-', blank=True, null=True)
     school = models.CharField(
-        max_length=255, default=None, blank=True, null=True)
+        max_length=255, default='-', blank=True, null=True)
     sex = models.ForeignKey(
         Sex, related_name='athletes_sex', on_delete=models.CASCADE)
     sports = models.ManyToManyField(Sport)
