@@ -79,7 +79,7 @@ function ProcessAthleteData(json) {
 
     resp += parseSportsListToHtml(json['sports']);
 
-    resp += parseAchievementListToHtml(json["achievements"]);
+    // resp += parseAchievementListToHtml(json["achievements"]);
     resp += '</tr>';
 
     $('.athlete-data').append(resp);

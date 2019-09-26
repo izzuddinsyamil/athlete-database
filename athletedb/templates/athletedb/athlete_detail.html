@@ -10,34 +10,52 @@
     <thead></thead>
     <tbody>
         <tr>
-            <td class="font-weight-bold">Nama</td>
+            <th scope="row">Nama</th>
             <td>{{ athlete_detail.name }}</td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Tanggal Lahir</td>
+            <th scope="row">NIK</th>
+            <td>{{ athlete_detail.nik }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Tanggal Lahir</th>
             <td>{{ athlete_detail.birth_date }} ({{ athlete_detail.age }} tahun)</td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Nomor Telfon</td>
+            <th scope="row">Tempat Lahir</th>
+            <td>{{ athlete_detail.birth_place }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Nomor Telepon</th>
             <td>{{ athlete_detail.phone_number }}</td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Alamat</td>
+            <th scope="row">Alamat</th>
             <td>{{ athlete_detail.address }}</td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Jenis Kelamin</td>
-            <td>{{ athlete_detail.sex }}</td>
-        </tr>
-        <tr class="sports-row">
-            <td class="font-weight-bold">Cabang Olahraga</td>
+            <th scope="row">Email</th>
+            <td>{{ athlete_detail.email }}</td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Asal Sekolah</td>
+            <th scope="row">Jenis Kelamin</th>
+            <td>{{ athlete_detail.sex }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Asal Sekolah</th>
             <td>{{ athlete_detail.school }}</td>
         </tr>
+        <tr class="sports-row">
+            <th scope="row">Cabang Olahraga</th>
+        </tr>
         <tr class="achievements-row">
-            <td class="font-weight-bold">Prestasi</td>
+            <th scope="row">Prestasi</th>
+            <td class="achievement-values-col">
+                <div class="achievementlist">
+                    <ul>
+                    </ul>
+                </div>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -56,11 +56,16 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class AchievementMappingList(generics.ListCreateAPIView):
-    queryset = AchievementMapping.objects.all()
     serializer_class = AchievementMappingSerializer
+
+    def get_queryset(self):
+        try:
+            id = self.request.query_params['id']
+            return AchievementMapping.objects.filter(athlete__id=id)
+        except:
+            return AchievementMapping.objects.all()
 
 
 class AchievementMappingDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = AchievementMapping.objects.all()
-    print('query set : ', queryset)
     serializer_class = AchievementMappingSerializer

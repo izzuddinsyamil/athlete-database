@@ -9,3 +9,13 @@
 .table {
     width: 70%;
 }
+
+.achievementlist ul {
+    line-height: inherit;
+    list-style: none none;
+    padding: 0;
+}
+
+.achievementlist ul li {
+    margin-bottom: 20px;
+}

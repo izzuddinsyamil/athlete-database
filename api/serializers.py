@@ -54,28 +54,22 @@ class AthleteSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = (
-            'name',
-            'year',
-            'organizer',
-            'date',
-            'location',
-        )
+        fields = '__all__'
 
 
 class AchievementListSerializer(serializers.ModelSerializer):
     class Meta:
         model = AchievementList
-        fields = (
-            'name',
-        )
+        fields = '__all__'
 
 
 class AchievementMappingSerializer(serializers.ModelSerializer):
+    athlete = AthleteSerializer()
+    event = EventSerializer()
+    achievement = AchievementListSerializer()
+
     class Meta:
         model = AchievementMapping
         fields = (
-            'athlete',
-            'event',
-            'achievement',
-        )
+            'id', 'athlete',
+            'event', 'achievement')
