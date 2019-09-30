@@ -6,7 +6,7 @@ $(document).ready(function () {
 });
 
 function getInitialdata(id) {
-    var url = 'http://localhost:8000/api/athlete/' + id;
+    var url = '/api/athlete/' + id;
 
     $.get(url, function (data, status) {
         if (status == 'success') {
@@ -19,7 +19,7 @@ function getInitialdata(id) {
 }
 
 function getAchievementData(id) {
-    var url = 'http://localhost:8000/api/achievement-mapping?id=' + id;
+    var url = '/api/achievement-mapping?id=' + id;
 
     $.get(url, function (data, status) {
         if (status == 'success') {
