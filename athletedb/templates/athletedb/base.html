@@ -11,8 +11,11 @@
     {% block css %}
     {% endblock %}
     <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
-    <script src="{% static 'athletedb/js/bootstrap.js' %}"></script>
-    <script src="{% static 'athletedb/js/jquery-3.4.1.min.js' %}"></script>
+    <!-- <script src="{% static 'athletedb/js/bootstrap.js' %}"></script>
+    <script src="{% static 'athletedb/js/jquery-3.4.1.min.js' %}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <title>Database Atlet Depok</title>
 </head>
@@ -25,6 +28,8 @@
                     class="d-inline-block align-top" alt="">
                 <span class="navbar-title align-middle font-weight-bold">Database Atlet Kota Depok</span>
             </a>
+            {% block search %}
+            {% endblock %}
         </nav>
 
         {% block content %}

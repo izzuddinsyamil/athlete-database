@@ -1,8 +1,27 @@
 {% extends "athletedb/base.html" %}
 {% load static %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'athletedb/css/index.css' %}">
 {% endblock %}
+
+{% block search %}
+<form class="form-inline">
+  <div class="input-group">
+    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Cari atlet dan lainnya ...">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">Semua</button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="#">Atlet</a>
+        <a class="dropdown-item" href="#">Event</a>
+        <a class="dropdown-item" href="#">Cabang Olahraga</a>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
 {% block content %}
 {% if athlete_list %}
 <div class="content-table">
