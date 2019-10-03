@@ -13,6 +13,12 @@ from django.core.paginator import (
 
 def index(request):
     athlete_list = Athlete.objects.all()
+
+    athlete_name = request.GET.get('athlete')
+    if athlete_name:
+        athlete_list = athlete_list.filter(
+            name__icontains=athlete_name.title())
+
     page = request.GET.get('page', 1)
 
     paginator = Paginator(athlete_list, 20)

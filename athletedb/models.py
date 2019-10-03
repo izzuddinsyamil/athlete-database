@@ -61,7 +61,7 @@ class AchievementList(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def save(self, *args, **kwargs):
         self.name = self.get_name_titled
         super(AchievementList, self).save(*args, **kwargs)
@@ -127,11 +127,11 @@ class Athlete(models.Model):
 
 class AchievementMapping(models.Model):
     athlete = models.ForeignKey(
-        Athlete, related_name='athletes', on_delete=models.CASCADE)
+        Athlete, related_name='athletes_achievementmapping', on_delete=models.CASCADE)
     event = models.ForeignKey(
-        Event, related_name='events', on_delete=models.CASCADE)
+        Event, related_name='events_achievementmapping', on_delete=models.CASCADE)
     achievement = models.ForeignKey(
-        AchievementList, related_name='achievements', on_delete=models.CASCADE)
+        AchievementList, related_name='achievementlist_achievementmapping', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.athlete.name

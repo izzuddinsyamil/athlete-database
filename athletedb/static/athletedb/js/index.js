@@ -50,23 +50,43 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.dropdown-item').click(function () {
+        $('.btn').html($(this).text())
+        $('.form-control').attr('name', $(this).data('category'));
+    });
+
+    // $('.form-control').keypress(function (e) {
+    //     var key = e.which;
+    //     if (key == 13) {
+    //         var category = $('.btn').text();
+    //         var input = $(this).val();
+    //     }
+    // });
 });
 
 function GetData() {
-    var params = new URLSearchParams(window.location.search);
+    var url = "api/athlete/"
 
+    var params = new URLSearchParams(window.location.search);
     var pageParam = params.get('page');
     if (pageParam == null) {
         pageParam = 1;
     }
-    var url = "api/athlete/?page=" + pageParam;
-        $.get(url, function (data, status) {
-            if (status == 'success') {
-                data["results"].forEach(function (element) {
-                    ProcessAthleteData(element);
-                });
-            }
-        });
+    url += "?page=" + pageParam;
+
+    var athleteParam = params.get('athlete');
+    if (athleteParam != null) {
+        url += "&athlete=" + athleteParam;
+    }
+
+    $.get(url, function (data, status) {
+        if (status == 'success') {
+            data["results"].forEach(function (element) {
+                ProcessAthleteData(element);
+            });
+        }
+    });
 }
 
 function ProcessAthleteData(json) {

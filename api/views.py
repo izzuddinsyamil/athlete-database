@@ -18,8 +18,16 @@ class SexList(generics.ListCreateAPIView):
 
 
 class AthleteList(generics.ListCreateAPIView):
-    queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
+
+    def get_queryset(self):
+        athlete_list = Athlete.objects.all()
+        if 'athlete' in self.request.query_params:
+            athlete_name = self.request.query_params['athlete']
+            athlete_list = athlete_list.filter(
+                name__icontains=athlete_name.title())
+
+        return athlete_list
 
 
 class AthleteDetail(generics.RetrieveUpdateDestroyAPIView):
