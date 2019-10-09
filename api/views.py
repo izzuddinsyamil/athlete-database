@@ -20,7 +20,13 @@ class AthleteList(generics.ListCreateAPIView):
         if 'athlete' in self.request.query_params:
             athlete_name = self.request.query_params['athlete']
             athlete_list = athlete_list.filter(
-                name__icontains=athlete_name.title())
+                name__icontains=athlete_name)
+
+        if 'sports' in self.request.query_params:
+            sport_name = self.request.query_params['sports']
+            athlete_list = athlete_list.filter(
+                sports__name__icontains=sport_name
+            )
 
         return athlete_list
 

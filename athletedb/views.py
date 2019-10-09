@@ -17,7 +17,13 @@ def index(request):
     athlete_name = request.GET.get('athlete')
     if athlete_name:
         athlete_list = athlete_list.filter(
-            name__icontains=athlete_name.title())
+            name__icontains=athlete_name)
+
+    sport_name = request.GET.get('sports')
+    if sport_name:
+        athlete_list = athlete_list.filter(
+            sports__name__icontains=sport_name
+        )
 
     page = request.GET.get('page', 1)
 

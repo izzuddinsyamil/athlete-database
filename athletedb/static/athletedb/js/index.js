@@ -80,6 +80,11 @@ function GetData() {
         url += "&athlete=" + athleteParam;
     }
 
+    var sportParam = params.get('sports');
+    if (sportParam != null) {
+        url += "&sports=" + sportParam;
+    }
+
     $.get(url, function (data, status) {
         if (status == 'success') {
             data["results"].forEach(function (element) {
