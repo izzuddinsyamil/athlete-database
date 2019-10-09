@@ -1,19 +1,17 @@
 from django.db import models
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
+from model_utils import Choices
 
 # Create your models here.
 
 
-class Sex(models.Model):
-    name = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.name
-
-
 class Sport(models.Model):
     name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = 'Cabang Olahraga'
+        verbose_name_plural = 'Cabang Olahraga'
 
     @property
     def get_name_titled(self):
@@ -89,24 +87,40 @@ class Achievement(models.Model):
 
 
 class Athlete(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name='nama')
     nik = models.CharField(
         max_length=255, default=None, blank=True, null=True, unique=True)
+    ktp = models.ImageField(upload_to='images/ktp/',
+                            default=None, blank=True, null=True, verbose_name='Foto Ktp')
     email = models.EmailField(default=None, blank=True, null=True)
     birth_date = models.DateField(
-        default=None, blank=True, null=True)
+        default=None, blank=True, null=True, verbose_name='tanggal lahir')
     birth_place = models.CharField(
-        max_length=255, default='-', blank=True, null=True)
-    age = models.IntegerField(default=None, blank=True, null=True)
+        max_length=255, default='-', blank=True, null=True,
+        verbose_name='tempat lahir')
+    age = models.IntegerField(default=None, blank=True,
+                              null=True, verbose_name='umur')
+    BLOOD_TYPES = Choices('A', 'B', 'AB', 'O')
+    blood_type = models.CharField(
+        choices=BLOOD_TYPES, default=BLOOD_TYPES.A,
+        max_length=2, blank=True, null=True, verbose_name='golongan darah')
     phone_number = models.CharField(
-        max_length=50, default='-', blank=True, null=True)
+        max_length=50, default='-', blank=True, null=True, verbose_name='umur')
     address = models.CharField(
-        max_length=255, default='-', blank=True, null=True)
+        max_length=255, default='-', blank=True, null=True, verbose_name='alamat')
     school = models.CharField(
-        max_length=255, default='-', blank=True, null=True)
-    sex = models.ForeignKey(
-        Sex, related_name='athletes_sex', on_delete=models.CASCADE)
-    sports = models.ManyToManyField(Sport)
+        max_length=255, default='-', blank=True, null=True, verbose_name='sekolah')
+
+    SEXES = Choices('Laki - laki', 'Perempuan')
+    sex = models.CharField(
+        choices=SEXES, max_length=20,
+        blank=True, null=True, verbose_name='Jenis Kelamin'
+    )
+    sports = models.ManyToManyField(Sport, verbose_name='Cabang Olahraga')
+
+    class Meta:
+        verbose_name = 'Atlet'
+        verbose_name_plural = 'Atlet'
 
     def __str__(self):
         return self.name
@@ -131,7 +145,8 @@ class AchievementMapping(models.Model):
     event = models.ForeignKey(
         Event, related_name='events_achievementmapping', on_delete=models.CASCADE)
     achievement = models.ForeignKey(
-        AchievementList, related_name='achievementlist_achievementmapping', on_delete=models.CASCADE)
+        AchievementList, related_name='achievementlist_achievementmapping',
+        on_delete=models.CASCADE)
 
     def __str__(self):
         return self.athlete.name

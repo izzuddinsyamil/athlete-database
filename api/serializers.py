@@ -1,14 +1,8 @@
 from athletedb.models import (
-    Athlete, Sex, Sport, Achievement,
+    Athlete, Sport, Achievement,
     AchievementMapping, Event,
     AchievementList)
 from rest_framework import serializers
-
-
-class SexSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sex
-        fields = ('name',)
 
 
 class SportSerializer(serializers.ModelSerializer):
@@ -39,6 +33,7 @@ class AthleteSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'nik',
+            'ktp',
             'email',
             'birth_date',
             'birth_place',

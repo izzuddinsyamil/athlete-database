@@ -157,6 +157,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
 }
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 django_heroku.settings(locals())
 
 if not ENV:

@@ -1,20 +1,15 @@
 from django.shortcuts import render
 from athletedb.models import (
-    Sex, Athlete, Achievement, Event,
+    Athlete, Achievement, Event,
     AchievementList, AchievementMapping)
 from rest_framework import viewsets, generics
 from api.serializers import (
-    SexSerializer, AthleteSerializer,
+    AthleteSerializer,
     AchievementSerializer, EventSerializer,
     AchievementListSerializer,
     AchievementMappingSerializer)
 
 # Create your views here.
-
-
-class SexList(generics.ListCreateAPIView):
-    queryset = Sex.objects.all()
-    serializer_class = SexSerializer
 
 
 class AthleteList(generics.ListCreateAPIView):

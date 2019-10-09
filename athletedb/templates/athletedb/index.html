@@ -1,6 +1,8 @@
 {% extends "athletedb/base.html" %}
 {% load static %}
 
+{% load templatehelpers %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'athletedb/css/index.css' %}">
 {% endblock %}
@@ -47,8 +49,12 @@
 </div>
 {% if athlete_list.has_other_pages %}
 <ul class="pagination justify-content-end">
+  <!-- <h2>{% relative_url 'name' 'order' request.GET.urlencode %}</h2> -->
+
   {% if athlete_list.has_previous %}
-  <li class="page-item"><a class="page-link" href="?page={{ athlete_list.previous_page_number }}">&laquo;</a></li>
+  <!-- <li class="page-item"><a class="page-link" href="?page={{ athlete_list.previous_page_number }}">&laquo;</a></li> -->
+  <li class="page-item"><a class="page-link"
+      href="{% relative_url athlete_list.previous_page_number 'page' request.GET.urlencode %}">&laquo;</a></li>
   {% else %}
   <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
   {% endif %}
@@ -56,11 +62,14 @@
   {% if athlete_list.number == i %}
   <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
   {% else %}
-  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+  <!-- <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li> -->
+  <li class="page-item"><a class="page-link" href="{% relative_url i 'page' request.GET.urlencode %}">{{ i }}</a></li>
   {% endif %}
   {% endfor %}
   {% if athlete_list.has_next %}
-  <li class="page-item"><a class="page-link" href="?page={{ athlete_list.next_page_number }}">&raquo;</a></li>
+  <!-- <li class="page-item"><a class="page-link" href="?page={{ athlete_list.next_page_number }}">&raquo;</a></li> -->
+  <li class="page-item"><a class="page-link"
+      href="{% relative_url athlete_list.next_page_number 'page' request.GET.urlencode %}">&raquo;</a></li>
   {% else %}
   <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
   {% endif %}

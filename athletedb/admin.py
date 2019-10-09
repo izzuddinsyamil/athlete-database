@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Sex, Sport,
+from .models import (Sport,
                      Achievement,
                      Athlete, Event,
                      AchievementList, AchievementMapping)
@@ -10,15 +10,15 @@ from .models import (Sex, Sport,
 
 @admin.register(Athlete)
 class AthleteAdmin(admin.ModelAdmin):
-    fields = ('name', 'nik', 'birth_date', 'birth_place', 'phone_number',
-              'address', 'email', 'sex', 'school', 'sports')
+    fields = ('name', 'nik', 'ktp', 'birth_date', 'birth_place',
+              'blood_type', 'phone_number', 'address', 'email',
+              'sex', 'school', 'sports')
 
 
 class AthleteAdmin(admin.ModelAdmin):
-    exclude = ('age',)
+    exclude = ('age', 'BLOOD_TYPES',)
 
 
-admin.site.register(Sex)
 admin.site.register(Sport)
 # admin.site.register(Achievement)
 admin.site.register(Event)
