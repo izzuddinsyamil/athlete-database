@@ -90,8 +90,14 @@ class Athlete(models.Model):
     name = models.CharField(max_length=200, verbose_name='nama')
     nik = models.CharField(
         max_length=255, default=None, blank=True, null=True, unique=True)
+    photo = models.ImageField(upload_to='images/kartu-keluarga/',
+                           default=None, blank=True, null=True,
+                           verbose_name='Pasfoto')
     ktp = models.ImageField(upload_to='images/ktp/',
                             default=None, blank=True, null=True, verbose_name='Foto Ktp')
+    kk = models.ImageField(upload_to='images/kartu-keluarga/',
+                           default=None, blank=True, null=True,
+                           verbose_name='Foto Kartu Keluarga')
     email = models.EmailField(default=None, blank=True, null=True)
     birth_date = models.DateField(
         default=None, blank=True, null=True, verbose_name='tanggal lahir')

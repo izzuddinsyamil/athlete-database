@@ -10,7 +10,7 @@ from .models import (Sport,
 
 @admin.register(Athlete)
 class AthleteAdmin(admin.ModelAdmin):
-    fields = ('name', 'nik', 'ktp', 'birth_date', 'birth_place',
+    fields = ('name', 'nik', 'photo', 'ktp', 'kk', 'birth_date', 'birth_place',
               'blood_type', 'phone_number', 'address', 'email',
               'sex', 'school', 'sports')
 

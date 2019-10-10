@@ -127,3 +127,6 @@ media/images/pas-foto/*
 
 media/images/sertifikat/*
 !media/images/sertifikat/.gitkeep
+
+media/images/kartu-keluarga/*
+!media/images/kartu-keluarga/.gitkeep
