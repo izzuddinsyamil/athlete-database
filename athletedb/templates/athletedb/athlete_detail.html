@@ -4,7 +4,18 @@
 <link rel="stylesheet" href="{% static 'athletedb/css/athlete_detail.css' %}">
 {% endblock %}
 {% block content %}
-<h2>{{ athlete_detail.name }}</h2>
+
+
+<div class="row align-items-center profile-header">
+    {% if athlete_detail.photo %}
+    <div class="col-">
+        <img src="{{ athlete_detail.photo.url }}" class="rounded-circle" alt="Pasfoto" width="150" height="150">
+    </div>
+    {% endif %}
+    <div class="col-sm athlete_name">
+        <h2>{{ athlete_detail.name }}</h2>
+    </div>
+</div>
 
 <table class="table">
     <thead></thead>
@@ -26,6 +37,14 @@
             <td>{{ athlete_detail.birth_place }}</td>
         </tr>
         <tr>
+            <th scope="row">Jenis Kelamin</th>
+            <td>{{ athlete_detail.sex }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Golongan Darah</th>
+            <td>{{ athlete_detail.blood_type }}</td>
+        </tr>
+        <tr>
             <th scope="row">Nomor Telepon</th>
             <td>{{ athlete_detail.phone_number }}</td>
         </tr>
@@ -36,10 +55,6 @@
         <tr>
             <th scope="row">Email</th>
             <td>{{ athlete_detail.email }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Jenis Kelamin</th>
-            <td>{{ athlete_detail.sex }}</td>
         </tr>
         <tr>
             <th scope="row">Asal Sekolah</th>
