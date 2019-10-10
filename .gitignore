@@ -122,8 +122,8 @@ coverage.*
 media/images/ktp/*
 !media/images/ktp/.gitkeep
 
-media/images/pas-foto/*
-!media/images/pas-foto/.gitkeep
+media/images/pasfoto/*
+!media/images/pasfoto/.gitkeep
 
 media/images/sertifikat/*
 !media/images/sertifikat/.gitkeep

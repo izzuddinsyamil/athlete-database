@@ -90,8 +90,9 @@ class Athlete(models.Model):
     name = models.CharField(max_length=200, verbose_name='nama')
     nik = models.CharField(
         max_length=255, default=None, blank=True, null=True, unique=True)
-    photo = models.ImageField(upload_to='images/kartu-keluarga/',
-                           default=None, blank=True, null=True,
+    photo = models.ImageField(upload_to='images/pasfoto/',
+                           default='images/pasfoto/default_photo.jpg',
+                           blank=True, null=True,
                            verbose_name='Pasfoto')
     ktp = models.ImageField(upload_to='images/ktp/',
                             default=None, blank=True, null=True, verbose_name='Foto Ktp')
