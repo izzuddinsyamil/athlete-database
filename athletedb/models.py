@@ -65,35 +65,14 @@ class AchievementList(models.Model):
         super(AchievementList, self).save(*args, **kwargs)
 
 
-class Achievement(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.CharField(max_length=255)
-    position = models.CharField(max_length=10)
-    event = models.ForeignKey(
-        Event, related_name='achievements_event',
-        on_delete=models.CASCADE, default=None,
-        blank=True, null=True)
-
-    @property
-    def get_titled_title(self):
-        return self.title.title()
-
-    def __str__(self):
-        return self.title
-
-    def save(self, *args, **kwargs):
-        self.title = self.get_titled_title
-        super(Achievement, self).save(*args, **kwargs)
-
-
 class Athlete(models.Model):
     name = models.CharField(max_length=200, verbose_name='nama')
     nik = models.CharField(
         max_length=255, default=None, blank=True, null=True, unique=True)
     photo = models.ImageField(upload_to='images/pasfoto/',
-                           default='images/pasfoto/default_photo.jpg',
-                           blank=True, null=True,
-                           verbose_name='Pasfoto')
+                              default='images/pasfoto/default_photo.jpg',
+                              blank=True, null=True,
+                              verbose_name='Pasfoto')
     ktp = models.ImageField(upload_to='images/ktp/',
                             default=None, blank=True, null=True, verbose_name='Foto Ktp')
     kk = models.ImageField(upload_to='images/kartu-keluarga/',
@@ -103,7 +82,7 @@ class Athlete(models.Model):
     birth_date = models.DateField(
         default=None, blank=True, null=True, verbose_name='tanggal lahir')
     birth_place = models.CharField(
-        max_length=255, default='-', blank=True, null=True,
+        max_length=255, default=None, blank=True, null=True,
         verbose_name='tempat lahir')
     age = models.IntegerField(default=None, blank=True,
                               null=True, verbose_name='umur')
@@ -112,11 +91,11 @@ class Athlete(models.Model):
         choices=BLOOD_TYPES, default=BLOOD_TYPES.A,
         max_length=2, blank=True, null=True, verbose_name='golongan darah')
     phone_number = models.CharField(
-        max_length=50, default='-', blank=True, null=True, verbose_name='umur')
+        max_length=50, default=None, blank=True, null=True, verbose_name='umur')
     address = models.CharField(
-        max_length=255, default='-', blank=True, null=True, verbose_name='alamat')
+        max_length=255, default=None, blank=True, null=True, verbose_name='alamat')
     school = models.CharField(
-        max_length=255, default='-', blank=True, null=True, verbose_name='sekolah')
+        max_length=255, default=None, blank=True, null=True, verbose_name='sekolah')
 
     SEXES = Choices('Laki - laki', 'Perempuan')
     sex = models.CharField(
@@ -144,6 +123,39 @@ class Athlete(models.Model):
         self.age = self.get_age
         self.name = self.get_name_titled
         super(Athlete, self).save(*args, **kwargs)
+
+
+class Achievement(models.Model):
+    description = models.CharField(
+        max_length=255, verbose_name='Deskripsi',
+        default=None, blank=True, null=True)
+
+    RESULTS = Choices('Juara 1', 'Juara 2', 'Juara 3', 'Peserta')
+    result = models.CharField(
+        choices=RESULTS, max_length=10, verbose_name='Hasil',
+        default=None, blank=True, null=True)
+
+    LEVELS = Choices('Tingkat Kota (Porkot)', 'Tingkat Daerah (Porda)',
+                     'Tingkat Provinsi (Porprov)', 'Tingkat Nasional (PON)',
+                     'Tingkat Dunia (Kejurda)')
+    level = models.CharField(
+        choices=LEVELS, max_length=255, verbose_name='Tingkat kejuaraan',
+        default=None, blank=True, null=True)
+    certificate_file = models.ImageField(
+        upload_to='images/sertifikat/', blank=True,
+        null=True, verbose_name='File sertifikat')
+    athlete = models.ForeignKey(
+        Athlete, on_delete=models.CASCADE,
+        related_name='athlete_achievements',
+        default=None, blank=True, null=True
+    )
+
+    class Meta:
+        verbose_name = 'Prestasi'
+        verbose_name_plural = 'Prestasi'
+
+    def __str__(self):
+        return self.description
 
 
 class AchievementMapping(models.Model):
