@@ -146,7 +146,7 @@ class Achievement(models.Model):
         null=True, verbose_name='File sertifikat')
     athlete = models.ForeignKey(
         Athlete, on_delete=models.CASCADE,
-        related_name='athlete_achievements',
+        related_name='achievements',
         default=None, blank=True, null=True
     )
 
