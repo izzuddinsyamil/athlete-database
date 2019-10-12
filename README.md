@@ -49,9 +49,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-staging url
-
-(https://database-atlet-depok.herokuapp.com)
+[Staging url] (https://database-atlet-depok.herokuapp.com)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
