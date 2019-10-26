@@ -55,14 +55,6 @@ $(document).ready(function () {
         $('.btn').html($(this).text())
         $('.form-control').attr('name', $(this).data('category'));
     });
-
-    // $('.form-control').keypress(function (e) {
-    //     var key = e.which;
-    //     if (key == 13) {
-    //         var category = $('.btn').text();
-    //         var input = $(this).val();
-    //     }
-    // });
 });
 
 function GetData() {
