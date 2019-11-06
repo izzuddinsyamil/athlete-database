@@ -91,7 +91,7 @@ class Athlete(models.Model):
         choices=BLOOD_TYPES, default=BLOOD_TYPES.A,
         max_length=2, blank=True, null=True, verbose_name='golongan darah')
     phone_number = models.CharField(
-        max_length=50, default=None, blank=True, null=True, verbose_name='umur')
+        max_length=50, default=None, blank=True, null=True, verbose_name='nomor telepon')
     address = models.CharField(
         max_length=255, default=None, blank=True, null=True, verbose_name='alamat')
     school = models.CharField(
