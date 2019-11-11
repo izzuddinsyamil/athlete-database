@@ -124,6 +124,7 @@ media/images/ktp/*
 
 media/images/pasfoto/*
 !media/images/pasfoto/.gitkeep
+!media/images/pasfoto/default_photo.jpg
 
 media/images/sertifikat/*
 !media/images/sertifikat/.gitkeep
