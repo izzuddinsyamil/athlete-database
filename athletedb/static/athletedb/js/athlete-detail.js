@@ -1,8 +1,6 @@
 $(document).ready(function () {
     var athleteId = window.location.pathname.split("/")[2];
     getInitialdata(athleteId);
-    getAchievementData(athleteId);
-
 });
 
 function getInitialdata(id) {
@@ -17,18 +15,6 @@ function getInitialdata(id) {
     });
 }
 
-function getAchievementData(id) {
-    var url = '/api/achievement-mapping?id=' + id;
-
-    $.get(url, function (data, status) {
-        if (status == 'success') {
-            processAchievementsData(data["results"]);
-        } else {
-            console.log('failed to get athlete achievements');
-        }
-    });
-}
-
 function processSportsData(sportList) {
     var sports = '<td>';
     if (sportList.length > 0) {
@@ -39,14 +25,4 @@ function processSportsData(sportList) {
     }
     sports += '</td>';
     $('.sports-row').append(sports);
-}
-
-function processAchievementsData(achievementList) {
-    achievementList.forEach(function (element) {
-        result = '<li>';
-        result += element.achievement["name"];
-        result += ', ' + element.event["name"];
-        result += '</li>'
-        $('.achievementlist ul').append(result);
-    });
 }
