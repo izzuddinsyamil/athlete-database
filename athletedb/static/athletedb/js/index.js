@@ -52,7 +52,7 @@ $(document).ready(function () {
     });
 
     $('.dropdown-item').click(function () {
-        $('.btn').html($(this).text())
+        $('.dropdown-toggle').html($(this).text());
         $('.form-control').attr('name', $(this).data('category'));
     });
 });
@@ -95,8 +95,6 @@ function ProcessAthleteData(json) {
         ;
 
     resp += parseSportsListToHtml(json['sports']);
-
-    // resp += parseAchievementListToHtml(json["achievements"]);
     resp += '</tr>';
 
     $('.athlete-data').append(resp);
