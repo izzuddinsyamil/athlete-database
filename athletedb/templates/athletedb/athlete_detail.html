@@ -5,75 +5,63 @@
 {% endblock %}
 {% block content %}
 
+<div class="athlete-bio shadow-sm p-4 mb-4 bg-white">
 
-<div class="row align-items-center profile-header">
-    {% if athlete_detail.photo %}
-    <div class="col- athlete-photo">
-        <img src="{{ athlete_detail.photo.url }}" class="rounded-circle" alt="Pasfoto" width="150" height="150">
+    <div class="row align-items-center profile-header">
+        {% if athlete_detail.photo %}
+        <div class="col- athlete-photo">
+            <img src="{{ athlete_detail.photo.url }}" class="rounded-circle" alt="Pasfoto" width="150" height="150">
+        </div>
+        {% endif %}
+        <div class="col-sm athlete_name">
+            <h2>{{ athlete_detail.name }}</h2>
+        </div>
     </div>
-    {% endif %}
-    <div class="col-sm athlete_name">
-        <h2>{{ athlete_detail.name }}</h2>
-    </div>
+
+    <dl class="row athlete-bio-detail">
+        <dt class="col-sm-3">Nama</dt>
+        <dd class="col-sm-9">{{ athlete_detail.name }}</dd>
+
+        <dt class="col-sm-3">NIK</dt>
+        <dd class="col-sm-9">{{ athlete_detail.nik }}</dd>
+
+        <dt class="col-sm-3">Tanggal Lahir</dt>
+        <dd class="col-sm-9">{{ athlete_detail.birth_date }} ({{ athlete_detail.age }} tahun)</dd>
+
+        <dt class="col-sm-3">Tempat Lahir</dt>
+        <dd class="col-sm-9">{{ athlete_detail.birth_place }}</dd>
+
+        <dt class="col-sm-3">Jenis Kelamin</dt>
+        <dd class="col-sm-9">{{ athlete_detail.sex }}</dd>
+
+        <dt class="col-sm-3">Golongan Darah</dt>
+        <dd class="col-sm-9">{{ athlete_detail.blood_type }}</dd>
+
+        <dt class="col-sm-3">Nomor Telepon</dt>
+        <dd class="col-sm-9">{{ athlete_detail.phone_number }}</dd>
+
+        <dt class="col-sm-3">Alamat</dt>
+        <dd class="col-sm-9">{{ athlete_detail.address }}</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">{{ athlete_detail.email }}</dd>
+
+        <dt class="col-sm-3">Asal Sekolah</dt>
+        <dd class="col-sm-9">{{ athlete_detail.school }}</dd>
+
+        <dt class="col-sm-3">Cabang Olahraga</dt>
+    </dl>
 </div>
 
-<table class="table">
-    <thead></thead>
-    <tbody>
-        <tr>
-            <th scope="row">Nama</th>
-            <td>{{ athlete_detail.name }}</td>
-        </tr>
-        <tr>
-            <th scope="row">NIK</th>
-            <td>{{ athlete_detail.nik }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Tanggal Lahir</th>
-            <td>{{ athlete_detail.birth_date }} ({{ athlete_detail.age }} tahun)</td>
-        </tr>
-        <tr>
-            <th scope="row">Tempat Lahir</th>
-            <td>{{ athlete_detail.birth_place }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Jenis Kelamin</th>
-            <td>{{ athlete_detail.sex }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Golongan Darah</th>
-            <td>{{ athlete_detail.blood_type }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Nomor Telepon</th>
-            <td>{{ athlete_detail.phone_number }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Alamat</th>
-            <td>{{ athlete_detail.address }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Email</th>
-            <td>{{ athlete_detail.email }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Asal Sekolah</th>
-            <td>{{ athlete_detail.school }}</td>
-        </tr>
-        <tr class="sports-row">
-            <th scope="row">Cabang Olahraga</th>
-        </tr>
-        <tr class="achievements-row">
-            <th scope="row">Prestasi</th>
-            <td class="achievement-values-col">
-                <div class="achievementlist">
-                    <ul>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+
+
+<div class="achievement-athlete-master shadow-sm p-4 mb-4 bg-white">
+    <h3>Prestasi</h3>
+    <div class="achievement-list"></div>
+    <div class="accordion" id="accordionAchievement">
+    </div>
+
+</div>
 {% endblock %}
 
 {% block js %}

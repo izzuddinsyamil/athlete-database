@@ -28,3 +28,7 @@
 .athlete-photo{
     padding-left: 20px;;
 }
+
+.border-bottom {
+    border-width:1px !important;
+}
