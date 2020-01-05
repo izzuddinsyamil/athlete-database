@@ -8,7 +8,6 @@ from django.core.paginator import (
     Paginator, EmptyPage, PageNotAnInteger)
 
 # pylint: disable=no-member
-# Create your views here.
 
 
 def index(request):

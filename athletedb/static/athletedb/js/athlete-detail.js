@@ -8,6 +8,7 @@ function getInitialdata(id) {
 
     $.get(url, function (data, status) {
         if (status == 'success') {
+            processAthleteBio(data);
             processSportsData(data["sports"]);
             processAchievementData(data["achievements"]);
         } else {
@@ -15,6 +16,21 @@ function getInitialdata(id) {
         }
     });
 }
+
+function processAthleteBio(athleteData) {
+    var birthDateAndAge = athleteData.birth_date + ` (` + athleteData.age + ` tahun)`;
+
+    $("#athlete-name").text(athleteData.name);
+    $("#athlete-nik").text(athleteData.nik);
+    $("#athlete-birthdate").text(birthDateAndAge);
+    $("#athlete-birthplace").text(athleteData.birth_place);
+    $("#athlete-sex").text(athleteData.name);
+    $("#athlete-bloodtype").text(athleteData.blood_type);
+    $("#athlete-phone").text(athleteData.phone_number);
+    $("#athlete-address").text(athleteData.address);
+    $("#athlete-email").text(athleteData.email);
+    $("#athlete-school").text(athleteData.school);
+} 
 
 function processSportsData(sportList) {
     var sports = '';
@@ -42,9 +58,9 @@ function processAchievementData(achievementList) {
         }
 
         var achievementData = `
-        <div class="achievement-per-athlete shadow-sm p-4 mb-4 bg-white rounded" id="` + achievementID +`">
+        <div class="achievement-per-athlete shadow-sm p-4 mb-4 bg-white rounded" id="` + achievementID + `">
             <div class="achievement-title border-bottom mb-3">
-                <h5>`+ achievementTitle +`</h5>
+                <h5>`+ achievementTitle + `</h5>
             </div>
             <div class="achievement-body">
                 <div class="achievement-desc mt-1 mb-3">` + element.description + `</div>
