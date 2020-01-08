@@ -155,7 +155,7 @@ class Achievement(models.Model):
         verbose_name_plural = 'Prestasi'
 
     def __str__(self):
-        return self.description
+        return "{result}, {level}".format(result=self.result, level=self.level)
 
 
 class AchievementMapping(models.Model):
