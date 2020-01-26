@@ -20,6 +20,7 @@ function getInitialdata(id) {
 function processAthleteBio(athleteData) {
     var birthDateAndAge = athleteData.birth_date + ` (` + athleteData.age + ` tahun)`;
 
+    $(".athlete_name_title").text(athleteData.name);
     $("#athlete-name").text(athleteData.name);
     $("#athlete-nik").text(athleteData.nik);
     $("#athlete-birthdate").text(birthDateAndAge);
