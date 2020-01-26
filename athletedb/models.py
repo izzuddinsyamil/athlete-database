@@ -126,9 +126,13 @@ class Athlete(models.Model):
 
 
 class Achievement(models.Model):
-    description = models.CharField(
-        max_length=255, verbose_name='Deskripsi',
-        default=None, blank=True, null=True)
+    # description = models.CharField(
+    #     max_length=255, verbose_name='Deskripsi',
+    #     default=None, blank=True, null=True)
+    description = models.TextField(
+        verbose_name='Deskripsi',
+        default=None, blank=True, null=True
+    )
 
     RESULTS = Choices('Juara 1', 'Juara 2', 'Juara 3', 'Peserta')
     result = models.CharField(
