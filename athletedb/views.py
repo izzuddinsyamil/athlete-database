@@ -46,7 +46,7 @@ def athlete_detail(request, athlete_id):
     return render(
         request,
         'athletedb/athlete_detail.html',
-        {'athlete_detail': athlete_detail, }
+        {'athlete_detail': athlete_detail}
     )
 
 
@@ -55,5 +55,5 @@ def achievement_detail(request, achievement_id):
     return render(
         request,
         'athletedb/achievement_detail.html',
-        {'achievement_detail': achievement_detail, }
+        {'achievement_detail': achievement_detail}
     )

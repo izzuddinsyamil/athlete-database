@@ -58,13 +58,18 @@ function processAchievementData(achievementList) {
             certificateImg = `<img src="` + element.certificate_file + `" class="achievement-img" width="500" height="300"></img>`
         }
 
+        var achievementDesc = "";
+        if (element.description != null) {
+            achievementDesc = element.description;
+        }
+
         var achievementData = `
         <div class="achievement-per-athlete shadow-sm p-4 mb-4 bg-white rounded" id="` + achievementID + `">
             <div class="achievement-title border-bottom mb-3">
                 <h5>`+ achievementTitle + `</h5>
             </div>
             <div class="achievement-body">
-                <div class="achievement-desc mt-1 mb-3">` + element.description + `</div>
+                <div class="achievement-desc mt-1 mb-3">` + achievementDesc + `</div>
                 <div class="achievement-certificate mb-3">
                     sertifikat : <br>
                     ` + certificateImg + `
