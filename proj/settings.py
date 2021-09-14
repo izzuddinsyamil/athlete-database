@@ -90,7 +90,8 @@ WSGI_APPLICATION = 'proj.wsgi.application'
 if ENV:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            # 'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.mysql', 
             'NAME': dotenv.get_key(DOTENV_FILE, 'DB_NAME'),
             'USER': dotenv.get_key(DOTENV_FILE, 'DB_USER'),
             'PASSWORD': dotenv.get_key(DOTENV_FILE, 'DB_PASSWORD'),
