@@ -29,8 +29,10 @@ class Sport(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=255)
     year = models.IntegerField(default=None, blank=True, null=True)
+    # year = models.CharField(max_length=255)
     organizer = models.CharField(max_length=255)
     date = models.DateField(default=None, blank=True, null=True)
+    # date = models.CharField(max_length=0)
     location = models.CharField(
         max_length=255, default=None, blank=True, null=True)
 
@@ -191,3 +193,18 @@ class AchievementMapping(models.Model):
 
     def __str__(self):
         return self.athlete.name
+
+
+class AthleteSports(models.Model):
+    athlete = models.ForeignKey(
+        Athlete, related_name='athletes_athletesports', on_delete=models.CASCADE)
+    sport = models.ForeignKey(
+        Sport, related_name='sports_athletesports', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Olahraga atlit'
+        verbose_name_plural = 'Olahraga atlit'
+        db_table = 'public.athletedb_athletesports'
+
+    def __str__(self):
+        return self.sport.name

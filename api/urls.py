@@ -10,8 +10,8 @@ urlpatterns = [
     path('athlete/sort/<str:sortby>/', views.AthleteSorted.as_view()),
 
     # achievements
-    path('achievement/', views.AchievementList.as_view()),
-    path('achievement/<int:pk>', views.AchievementDetail.as_view()),
+    path('achievement/', views.CollectionList.as_view()),
+    path('achievement/<int:pk>', views.CollectionDetail.as_view()),
 
     # event
     path('event/', views.EventList.as_view()),
@@ -21,6 +21,21 @@ urlpatterns = [
     path('achievement-mapping/', views.AchievementMappingList.as_view()),
     path('achievement-mapping/<int:pk>',
          views.AchievementMappingDetail.as_view()),
+
+    # achievement list
+    path('achievement-list/', views.AchievementCollectionList.as_view()),
+    path('achievement-list/<int:pk>',
+         views.AchievementCollectionDetail.as_view()),
+
+     # sport
+    path('sport/', views.SportList.as_view()),
+    path('sport/<int:pk>',
+         views.SportDetail.as_view()),
+
+     # athlete sports
+    path('athlete-sports/', views.AthleteSportsList.as_view()),
+    path('athlete-sports/<int:pk>',
+         views.AthleteSportsDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

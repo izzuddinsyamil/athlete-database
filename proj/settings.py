@@ -28,7 +28,7 @@ if os.path.isfile(DOTENV_FILE):
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n3yjei#0)m2ccqv49f1(_57j!2snl5l&sjzx6a)l0^bp2_52^9'
+SECRET_KEY = dotenv.get_key(DOTENV_FILE, 'ATHLETE_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENV:
@@ -151,11 +151,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # )
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    # ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    # 'PAGINATE_BY_PARAM': 'page_size'
 }
 
 MEDIA_URL = '/media/'
