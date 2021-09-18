@@ -118,6 +118,7 @@ class Athlete(models.Model):
     sports = models.ManyToManyField(Sport, verbose_name='Cabang Olahraga')
 
     class Meta:
+        ordering = ['-id']
         verbose_name = 'Atlet'
         verbose_name_plural = 'Atlet'
         db_table = 'public.athletedb_athlete'
