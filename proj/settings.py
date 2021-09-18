@@ -28,7 +28,7 @@ if os.path.isfile(DOTENV_FILE):
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = dotenv.get_key(DOTENV_FILE, 'ATHLETE_SECRET_KEY')
+SECRET_KEY = os.environ['ATHLETE_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENV:
@@ -92,11 +92,11 @@ if ENV:
         'default': {
             # 'ENGINE': 'django.db.backends.postgresql',
             'ENGINE': 'django.db.backends.mysql', 
-            'NAME': dotenv.get_key(DOTENV_FILE, 'DB_NAME'),
-            'USER': dotenv.get_key(DOTENV_FILE, 'DB_USER'),
-            'PASSWORD': dotenv.get_key(DOTENV_FILE, 'DB_PASSWORD'),
-            'HOST': dotenv.get_key(DOTENV_FILE, 'DB_HOST'),
-            'PORT': dotenv.get_key(DOTENV_FILE, 'DB_PORT')
+            'NAME': os.environ['SPRING_DATASOURCE_USERNAME'],
+            'USER': os.environ['SPRING_DATASOURCE_USERNAME'],
+            'PASSWORD': os.environ['SPRING_DATASOURCE_PASSWORD'],
+            'HOST': os.environ['DJANGO_DATABASE_HOST'],
+            'PORT': os.environ['DJANGO_DATABASE_PORT']
         }
     }
 else:

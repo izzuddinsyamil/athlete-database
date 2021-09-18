@@ -131,3 +131,5 @@ media/images/sertifikat/*
 
 media/images/kartu-keluarga/*
 !media/images/kartu-keluarga/.gitkeep
+
+staticfiles/
