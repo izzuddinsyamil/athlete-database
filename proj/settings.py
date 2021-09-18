@@ -91,7 +91,7 @@ if ENV:
     DATABASES = {
         'default': {
             # 'ENGINE': 'django.db.backends.postgresql',
-            'ENGINE': 'django.db.backends.mysql', 
+            'ENGINE': os.environ['DATABASE_ENGINE'], 
             'NAME': os.environ['SPRING_DATASOURCE_USERNAME'],
             'USER': os.environ['SPRING_DATASOURCE_USERNAME'],
             'PASSWORD': os.environ['SPRING_DATASOURCE_PASSWORD'],
