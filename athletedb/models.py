@@ -12,6 +12,7 @@ class Sport(models.Model):
     class Meta:
         verbose_name = 'Cabang Olahraga'
         verbose_name_plural = 'Cabang Olahraga'
+        db_table = 'athletedb_sport'
 
     @property
     def get_name_titled(self):
@@ -28,10 +29,17 @@ class Sport(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=255)
     year = models.IntegerField(default=None, blank=True, null=True)
+    # year = models.CharField(max_length=255)
     organizer = models.CharField(max_length=255)
     date = models.DateField(default=None, blank=True, null=True)
+    # date = models.CharField(max_length=0)
     location = models.CharField(
         max_length=255, default=None, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Olimpiade'
+        verbose_name_plural = 'Olimpiade'
+        db_table = 'athletedb_event'
 
     @property
     def get_name_titled(self):
@@ -52,6 +60,11 @@ class Event(models.Model):
 
 class AchievementList(models.Model):
     name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = 'Perolehan Medali'
+        verbose_name_plural = 'Perolehan Medali'
+        db_table = 'athletedb_achievementlist'
 
     @property
     def get_name_titled(self):
@@ -105,8 +118,10 @@ class Athlete(models.Model):
     sports = models.ManyToManyField(Sport, verbose_name='Cabang Olahraga')
 
     class Meta:
+        ordering = ['-id']
         verbose_name = 'Atlet'
         verbose_name_plural = 'Atlet'
+        db_table = 'athletedb_athlete'
 
     def __str__(self):
         return self.name
@@ -157,6 +172,7 @@ class Achievement(models.Model):
     class Meta:
         verbose_name = 'Prestasi'
         verbose_name_plural = 'Prestasi'
+        db_table = 'athletedb_achievement'
 
     def __str__(self):
         return "{result}, {level}".format(result=self.result, level=self.level)
@@ -171,5 +187,25 @@ class AchievementMapping(models.Model):
         AchievementList, related_name='achievementlist_achievementmapping',
         on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = 'Medali Prestasi'
+        verbose_name_plural = 'Medali Prestasi'
+        db_table = 'athletedb_achievementmapping'
+
     def __str__(self):
         return self.athlete.name
+
+
+class AthleteSports(models.Model):
+    athlete = models.ForeignKey(
+        Athlete, related_name='athletes_athletesports', on_delete=models.CASCADE)
+    sport = models.ForeignKey(
+        Sport, related_name='sports_athletesports', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Olahraga atlit'
+        verbose_name_plural = 'Olahraga atlit'
+        db_table = 'athletedb_athletesports'
+
+    def __str__(self):
+        return self.sport.name

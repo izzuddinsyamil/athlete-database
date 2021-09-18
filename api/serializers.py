@@ -1,5 +1,5 @@
 from athletedb.models import (
-    Athlete, Sport, Achievement,
+    Athlete, AthleteSports, Sport, Achievement,
     AchievementMapping, Event,
     AchievementList)
 from rest_framework import serializers
@@ -8,7 +8,8 @@ from rest_framework import serializers
 class SportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sport
-        fields = ('name',)
+        fields = '__all__'
+        # fields = ('name',)
 
 
 class AchievementSerializer(serializers.ModelSerializer):
@@ -68,3 +69,14 @@ class AchievementMappingSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'athlete',
             'event', 'achievement')
+
+
+class AthleteSportsSerializer(serializers.ModelSerializer):
+    athlete = AthleteSerializer()
+    sport = SportSerializer()
+
+    class Meta:
+        model = AthleteSports
+        fields = (
+            'id', 'athlete',
+            'sport')
