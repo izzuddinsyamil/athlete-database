@@ -1,7 +1,7 @@
 astroid
 autopep8
 coverage
-dj-database-url
+# dj-database-url
 Django
 django-heroku
 django-model-utils
@@ -15,7 +15,6 @@ psycopg2
 pycodestyle
 pylint
 python-dateutil
-python-dotenv
 pytz
 six
 sqlparse
